@@ -1,0 +1,749 @@
+{
+	"info": {
+		"_postman_id": "53c8a10b-8a37-4e66-b878-df1d75cb600a",
+		"name": "APK Secondhand",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "27146005"
+	},
+	"item": [
+		{
+			"name": "auth/register",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"pm.test(\"Response time is less than 400ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(400);\r",
+							"});\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {}
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"full_name\": \"Zain\",\r\n  \"email\": \"liamaaka@mail.com\",\r\n  \"password\": \"123456\",\r\n  \"phone_number\": 1235698745,\r\n  \"address\": \"Jogja\",\r\n\"city\": \"Jakarta\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}auth/register",
+					"host": [
+						"{{base_url}}auth"
+					],
+					"path": [
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "auth/login",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"pm.test(\"Response time is less than 400ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(400);\r",
+							"});\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"email\": \"liamaaka@mail.com\",\r\n  \"password\": \"123456\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}auth/login",
+					"host": [
+						"{{base_url}}auth"
+					],
+					"path": [
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "auth/user",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"pm.test(\"Response time is less than 400ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(400);\r",
+							"});\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImxpYW1hYWthQG1haWwuY29tIiwiaWF0IjoxNzIzMTM0MzQwfQ.h7Z3aW66k4Fc5aS0JNtVyqr1INs0FJA2wufNdT2CtFI",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [
+					{
+						"key": "access_token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImxpYW1hYWthQG1haWwuY29tIiwiaWF0IjoxNzIzMTM0MzQwfQ.h7Z3aW66k4Fc5aS0JNtVyqr1INs0FJA2wufNdT2CtFI",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"full_name\": \"John Doe\",\r\n  \"email\": \"johndoe@mail.com\",\r\n  \"password\": \"password123\",\r\n  \"phone_number\": 81121934455,\r\n  \"address\": \"Mampang PrPt.\",\r\n  \"image\": \"/path/to/image.jpg\",\r\n  \"city\": \"Jakarta\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}auth/user",
+					"host": [
+						"{{base_url}}auth"
+					],
+					"path": [
+						"user"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "auth/change-password",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"pm.test(\"Response time is less than 400ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(400);\r",
+							"});\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImxpYW1hYWthQG1haWwuY29tIiwiaWF0IjoxNzIzMTM0MzQwfQ.h7Z3aW66k4Fc5aS0JNtVyqr1INs0FJA2wufNdT2CtFI",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [
+					{
+						"key": "access_token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImxpYW1hYWthQG1haWwuY29tIiwiaWF0IjoxNzIzMTM0MzQwfQ.h7Z3aW66k4Fc5aS0JNtVyqr1INs0FJA2wufNdT2CtFI",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"full_name\": \"John Doe\",\r\n  \"email\": \"johndoe@mail.com\",\r\n  \"password\": \"password123\",\r\n  \"phone_number\": 81121934455,\r\n  \"address\": \"Mampang PrPt.\",\r\n  \"image\": \"/path/to/image.jpg\",\r\n  \"city\": \"Jakarta\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}auth/user",
+					"host": [
+						"{{base_url}}auth"
+					],
+					"path": [
+						"user"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "seller/product",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"pm.test(\"Response time is less than 400ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(400);\r",
+							"});\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "access_token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImpvaG5sYXhAbWFpbC5jb20iLCJpYXQiOjE2OTk1NzkwMzJ9.86oAqRLRmEgXpVv5FEISRc2wUJi-m-VwpaZPcnOhz5U",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "name",
+							"value": "baju",
+							"type": "text"
+						},
+						{
+							"key": "description",
+							"value": "tas",
+							"type": "text"
+						},
+						{
+							"key": "base_price",
+							"value": "200000",
+							"type": "text"
+						},
+						{
+							"key": "category_ids",
+							"value": "2",
+							"type": "text"
+						},
+						{
+							"key": "location",
+							"value": "Jakarta",
+							"type": "text"
+						},
+						{
+							"key": "image",
+							"type": "file",
+							"src": "/C:/Users/user/Downloads/pexels-mayday-1545743.jpg"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{base_url}}seller/product",
+					"host": [
+						"{{base_url}}seller"
+					],
+					"path": [
+						"product"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "seller/product/{id}",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"pm.test(\"Response time is less than 400ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(400);\r",
+							"});\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "access_token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImpvaG5sYXhAbWFpbC5jb20iLCJpYXQiOjE2OTk1NzkwMzJ9.86oAqRLRmEgXpVv5FEISRc2wUJi-m-VwpaZPcnOhz5U",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "seller/product/126335?status",
+					"host": [
+						"seller"
+					],
+					"path": [
+						"product",
+						"126335"
+					],
+					"query": [
+						{
+							"key": "status",
+							"value": null
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "seller/product",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"pm.test(\"Response time is less than 400ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(400);\r",
+							"});\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "access_token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InlhaW45QG1haWwuY29tIiwiaWF0IjoxNzIzMTM1MDEyfQ.0ZaweEpnK7ywz_rR7nZFdC3epH97P-uslchkEdWJwHc",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{base_url}}seller/product",
+					"host": [
+						"{{base_url}}seller"
+					],
+					"path": [
+						"product"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "seller/product/{id}",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"pm.test(\"Response time is less than 400ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(400);\r",
+							"});\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "access_token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImpvaG5sYXhAbWFpbC5jb20iLCJpYXQiOjE2OTk1NzkwMzJ9.86oAqRLRmEgXpVv5FEISRc2wUJi-m-VwpaZPcnOhz5U",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{base_url}}seller/product/126334",
+					"host": [
+						"{{base_url}}seller"
+					],
+					"path": [
+						"product",
+						"126334"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "seller/product/{id}",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"pm.test(\"Response time is less than 400ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(400);\r",
+							"});\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "access_token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImpvaG5sYXhAbWFpbC5jb20iLCJpYXQiOjE2OTk1NzkwMzJ9.86oAqRLRmEgXpVv5FEISRc2wUJi-m-VwpaZPcnOhz5U",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{base_url}}seller/product/126333",
+					"host": [
+						"{{base_url}}seller"
+					],
+					"path": [
+						"product",
+						"126333"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "buyer/product",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"pm.test(\"Response time is less than 400ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(400);\r",
+							"});\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}buyer/product",
+					"host": [
+						"{{base_url}}buyer"
+					],
+					"path": [
+						"product"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "buyer/product/{id}",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"pm.test(\"Response time is less than 400ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(400);\r",
+							"});\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}buyer/product/1",
+					"host": [
+						"{{base_url}}buyer"
+					],
+					"path": [
+						"product",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "buyer/order",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"pm.test(\"Response time is less than 400ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(400);\r",
+							"});\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "access_token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImpvaG5sYXhAbWFpbC5jb20iLCJpYXQiOjE2OTk1NzkwMzJ9.86oAqRLRmEgXpVv5FEISRc2wUJi-m-VwpaZPcnOhz5U",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"product_id\": 122335,\r\n  \"bid_price\": 1000\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}buyer/order",
+					"host": [
+						"{{base_url}}buyer"
+					],
+					"path": [
+						"order"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "buyer/order/",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"pm.test(\"Response time is less than 400ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(400);\r",
+							"});\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "access_token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImpvaG5sYXhAbWFpbC5jb20iLCJpYXQiOjE2OTk1NzkwMzJ9.86oAqRLRmEgXpVv5FEISRc2wUJi-m-VwpaZPcnOhz5U",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{base_url}}buyer/order/65670",
+					"host": [
+						"{{base_url}}buyer"
+					],
+					"path": [
+						"order",
+						"65670"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "buyer/order/{id}",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"pm.test(\"Response time is less than 400ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(400);\r",
+							"});\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "access_token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImpvaG5sYXhAbWFpbC5jb20iLCJpYXQiOjE2OTk1NzkwMzJ9.86oAqRLRmEgXpVv5FEISRc2wUJi-m-VwpaZPcnOhz5U",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{base_url}}buyer/order/65670",
+					"host": [
+						"{{base_url}}buyer"
+					],
+					"path": [
+						"order",
+						"65670"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "buyer/order/{id}",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"pm.test(\"Response time is less than 400ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(400);\r",
+							"});\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "access_token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImpvaG5sYXhAbWFpbC5jb20iLCJpYXQiOjE2OTk1NzkwMzJ9.86oAqRLRmEgXpVv5FEISRc2wUJi-m-VwpaZPcnOhz5U",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{base_url}}buyer/order/65670",
+					"host": [
+						"{{base_url}}buyer"
+					],
+					"path": [
+						"order",
+						"65670"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}

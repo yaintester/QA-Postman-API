@@ -1,0 +1,897 @@
+{
+	"info": {
+		"_postman_id": "920fb9a8-26b2-4cc5-8b78-4ec5dc4fd17c",
+		"name": "Website Secondhand",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "27146005"
+	},
+	"item": [
+		{
+			"name": "users.json",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"Response time is less than 400ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(400);\r",
+							"});\r",
+							"pm.test(\"Status code name has string\", function () {\r",
+							"    pm.response.to.have.status(\"OK\");\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"user\": {\r\n    \"name\": \"Yain\",\r\n    \"email\": \"yaainaa@gmail.com\",\r\n    \"password\": \"123456\"\r\n  }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/users.json",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"users.json"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "users/sign_in.json",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"Response time is less than 400ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(400);\r",
+							"});\r",
+							"const strukturData = \r",
+							"{\r",
+							"  \"type\": \"object\",\r",
+							"  \"properties\": {\r",
+							"    \"user\": {\r",
+							"      \"type\": \"object\",\r",
+							"      \"properties\": {\r",
+							"        \"id\": {\r",
+							"          \"type\": \"integer\"\r",
+							"        },\r",
+							"        \"name\": {\r",
+							"          \"type\": \"string\"\r",
+							"        },\r",
+							"        \"email\": {\r",
+							"          \"type\": \"string\"\r",
+							"        },\r",
+							"        \"phone_number\": {\r",
+							"          \"type\": \"null\"\r",
+							"        },\r",
+							"        \"address\": {\r",
+							"          \"type\": \"null\"\r",
+							"        }\r",
+							"      },\r",
+							"      \"required\": [\r",
+							"        \"id\",\r",
+							"        \"name\",\r",
+							"        \"email\",\r",
+							"        \"phone_number\",\r",
+							"        \"address\"\r",
+							"      ]\r",
+							"    },\r",
+							"    \"session\": {\r",
+							"      \"type\": \"object\",\r",
+							"      \"properties\": {\r",
+							"        \"token\": {\r",
+							"          \"type\": \"string\"\r",
+							"        }\r",
+							"      },\r",
+							"      \"required\": [\r",
+							"        \"token\"\r",
+							"      ]\r",
+							"    }\r",
+							"  },\r",
+							"  \"required\": [\r",
+							"    \"user\",\r",
+							"    \"session\"\r",
+							"  ]\r",
+							"}\r",
+							"\r",
+							"pm.test(\"Response data structure is correct\", function(){\r",
+							"    pm.response.to.have.jsonSchema(strukturData);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"user\": {\r\n    \"email\": \"yain@gmail.com\",\r\n    \"password\": \"123456\"\r\n  }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/users/sign_in.json",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"users",
+						"sign_in.json"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/categories.json",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"Response time is less than 400ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(400);\r",
+							"});\r",
+							"\r",
+							"const strukturData =\r",
+							"{\r",
+							"  \"type\": \"object\",\r",
+							"  \"properties\": {\r",
+							"    \"categories\": {\r",
+							"      \"type\": \"array\",\r",
+							"      \"items\": [\r",
+							"        {\r",
+							"          \"type\": \"object\",\r",
+							"          \"properties\": {\r",
+							"            \"id\": {\r",
+							"              \"type\": \"integer\"\r",
+							"            },\r",
+							"            \"name\": {\r",
+							"              \"type\": \"string\"\r",
+							"            },\r",
+							"            \"url\": {\r",
+							"              \"type\": \"string\"\r",
+							"            }\r",
+							"          },\r",
+							"          \"required\": [\r",
+							"            \"id\",\r",
+							"            \"name\",\r",
+							"            \"url\"\r",
+							"          ]\r",
+							"        },\r",
+							"        {\r",
+							"          \"type\": \"object\",\r",
+							"          \"properties\": {\r",
+							"            \"id\": {\r",
+							"              \"type\": \"integer\"\r",
+							"            },\r",
+							"            \"name\": {\r",
+							"              \"type\": \"string\"\r",
+							"            },\r",
+							"            \"url\": {\r",
+							"              \"type\": \"string\"\r",
+							"            }\r",
+							"          },\r",
+							"          \"required\": [\r",
+							"            \"id\",\r",
+							"            \"name\",\r",
+							"            \"url\"\r",
+							"          ]\r",
+							"        },\r",
+							"        {\r",
+							"          \"type\": \"object\",\r",
+							"          \"properties\": {\r",
+							"            \"id\": {\r",
+							"              \"type\": \"integer\"\r",
+							"            },\r",
+							"            \"name\": {\r",
+							"              \"type\": \"string\"\r",
+							"            },\r",
+							"            \"url\": {\r",
+							"              \"type\": \"string\"\r",
+							"            }\r",
+							"          },\r",
+							"          \"required\": [\r",
+							"            \"id\",\r",
+							"            \"name\",\r",
+							"            \"url\"\r",
+							"          ]\r",
+							"        },\r",
+							"        {\r",
+							"          \"type\": \"object\",\r",
+							"          \"properties\": {\r",
+							"            \"id\": {\r",
+							"              \"type\": \"integer\"\r",
+							"            },\r",
+							"            \"name\": {\r",
+							"              \"type\": \"string\"\r",
+							"            },\r",
+							"            \"url\": {\r",
+							"              \"type\": \"string\"\r",
+							"            }\r",
+							"          },\r",
+							"          \"required\": [\r",
+							"            \"id\",\r",
+							"            \"name\",\r",
+							"            \"url\"\r",
+							"          ]\r",
+							"        },\r",
+							"        {\r",
+							"          \"type\": \"object\",\r",
+							"          \"properties\": {\r",
+							"            \"id\": {\r",
+							"              \"type\": \"integer\"\r",
+							"            },\r",
+							"            \"name\": {\r",
+							"              \"type\": \"string\"\r",
+							"            },\r",
+							"            \"url\": {\r",
+							"              \"type\": \"string\"\r",
+							"            }\r",
+							"          },\r",
+							"          \"required\": [\r",
+							"            \"id\",\r",
+							"            \"name\",\r",
+							"            \"url\"\r",
+							"          ]\r",
+							"        }\r",
+							"      ]\r",
+							"    }\r",
+							"  },\r",
+							"  \"required\": [\r",
+							"    \"categories\"\r",
+							"  ]\r",
+							"}\r",
+							"\r",
+							"pm.test(\"Response data structure is correct\", function(){\r",
+							"    pm.response.to.have.jsonSchema(strukturData);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"categories\": [\r\n    {\r\n      \"id\": 1,\r\n      \"name\": \"Feral Falmer\",\r\n      \"url\": \"http://www.example.com/categories/17\"\r\n    },\r\n    {\r\n      \"id\": 2,\r\n      \"name\": \"Skeleton\",\r\n      \"url\": \"http://www.example.com/categories/18\"\r\n    },\r\n    {\r\n      \"id\": 3,\r\n      \"name\": \"Wisp\",\r\n      \"url\": \"http://www.example.com/categories/19\"\r\n    },\r\n    {\r\n      \"id\": 4,\r\n      \"name\": \"Slaughterfish\",\r\n      \"url\": \"http://www.example.com/categories/20\"\r\n    },\r\n    {\r\n      \"id\": 5,\r\n      \"name\": \"Spider Guardian\",\r\n      \"url\": \"http://www.example.com/categories/21\"\r\n    }\r\n  ]\r\n}"
+				},
+				"url": {
+					"raw": "{{base_url}}/categories.json",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"categories.json"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/categories/id.json",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"Response time is less than 400ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(400);\r",
+							"});\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"category\": {\r\n    \"id\": 1,\r\n    \"name\": \"Feral Falmer\",\r\n    \"url\": \"http://www.example.com/categories/17\"\r\n  }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/categories/{1}.json",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"categories",
+						"{1}.json"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/offers.json",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"Response time is less than 400ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(400);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxODg5MTIiLCJzY3AiOiJ1c2VyIiwiYXVkIjpudWxsLCJpYXQiOjE3MjMxMjYwNTcsImV4cCI6MTcyNDMzNTY1NywianRpIjoiMDI5OWJmZTItZDgwYi00MDRjLWFiMDktMDg4ZjhjYjI3NzU1In0.m_kgVkWFbzh-5RQWlPZVYNyxQf0efoFm6oWJEenMu_s",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"offer\": {\r\n    \"price\": 1000,\r\n    \"to_id\": 1,\r\n    \"product_id\": 1\r\n  }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/offers.json",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"offers.json"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/users/{user_id}/offers.json",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"Response time is less than 400ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(400);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/users/188912/offers.json",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"users",
+						"188912",
+						"offers.json"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/offers/{id}.json",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"Response time is less than 400ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(400);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"url": {
+					"raw": "{{base_url}}/offers/:id.json",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"offers",
+						":id.json"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/products.json",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"Response time is less than 400ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(400);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxODg5MTIiLCJzY3AiOiJ1c2VyIiwiYXVkIjpudWxsLCJpYXQiOjE3MjMxMjYwNTcsImV4cCI6MTcyNDMzNTY1NywianRpIjoiMDI5OWJmZTItZDgwYi00MDRjLWFiMDktMDg4ZjhjYjI3NzU1In0.m_kgVkWFbzh-5RQWlPZVYNyxQf0efoFm6oWJEenMu_s",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "product[name]",
+							"value": "contoh",
+							"type": "text"
+						},
+						{
+							"key": "product[price]",
+							"value": "10000",
+							"type": "text"
+						},
+						{
+							"key": "product[description]",
+							"value": "bebas",
+							"type": "text"
+						},
+						{
+							"key": "product[status]",
+							"value": "cek",
+							"type": "text"
+						},
+						{
+							"key": "product[category_id]",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "product[images][]",
+							"type": "file",
+							"src": "/C:/Users/user/Downloads/pexels-mayday-1545743.jpg"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{base_url}}/products.json",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"products.json"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/products.json",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"Response time is less than 400ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(400);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"category_id\": 2,\r\n  \"user_id\": 188912\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/products.json",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"products.json"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "1",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "products/{id}.json",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"Response time is less than 400ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(400);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/products/188912.json",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"products",
+						"188912.json"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "products/{id}.json",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"Response time is less than 400ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(400);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "product[name]",
+							"value": "Aether Lens",
+							"type": "text"
+						},
+						{
+							"key": "product[price]",
+							"value": "119534",
+							"type": "text"
+						},
+						{
+							"key": "product[description]",
+							"value": "Non suscipit deleniti. Blanditiis omnis nobis. Similique quia id.",
+							"type": "text"
+						},
+						{
+							"key": "product[status]",
+							"value": "draft",
+							"type": "text"
+						},
+						{
+							"key": "product[category_id]",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "product[images][]",
+							"type": "file",
+							"src": "/C:/Users/LENOVO/Downloads/mrhndi.jpg"
+						},
+						{
+							"key": "product[persisted_images][]",
+							"type": "file",
+							"src": "/C:/Users/LENOVO/Downloads/mrhndi.jpg"
+						},
+						{
+							"key": "product[persisted_images][]",
+							"type": "file",
+							"src": "/C:/Users/LENOVO/Downloads/mrhndi.jpg"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{base_url}}/products/188912.json",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"products",
+						"188912.json"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "products/{id}.json",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"Response time is less than 200ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/products/51549.json",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"products",
+						"51549.json"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "profiles.json",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"Response time is less than 400ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(400);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "",
+						"value": "",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "user[name]",
+							"value": "namasaya jain",
+							"type": "text"
+						},
+						{
+							"key": "user[phone_number]",
+							"value": "085258522586",
+							"type": "text"
+						},
+						{
+							"key": "user[address]",
+							"value": "mana aja",
+							"type": "text"
+						},
+						{
+							"key": "user[city_id]",
+							"value": "3",
+							"type": "text"
+						},
+						{
+							"key": "user[avatar]",
+							"type": "file",
+							"src": "/C:/Users/user/Downloads/pexels-mayday-1545743.jpg"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{base_url}}/profiles.json",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"profiles.json"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "profiles.json",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"Response time is less than 400ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(400);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{base_url}}/profiles.json",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"profiles.json"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
